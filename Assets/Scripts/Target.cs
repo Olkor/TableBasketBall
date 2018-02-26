@@ -3,23 +3,14 @@
 [RequireComponent(typeof(Collider2D))]
 public class Target : MonoBehaviour {
 
-
     public event System.Action onScore;
 
     [SerializeField]
-    private Collider2D left;
-    [SerializeField]
-    private Collider2D right;
-    [SerializeField]
     private Collider2D target;
 
-	void Start () {
-		
-	}
-
-    private void OnCollisionEnter2D(Collision2D collision)
+	private void OnTriggerEnter2D(Collider2D otherCollider)
     {
-        if (collision.otherCollider.tag == "Ball"){
+		if (otherCollider.tag == Ball.Tag){
             if (onScore != null){
                 onScore();
             }
@@ -27,8 +18,8 @@ public class Target : MonoBehaviour {
     }
 
     public void EnableColliders(bool enable){
-        //left.enabled = enable;
-        //right.enabled = enable;
-        target.enabled = enable;
+		if (target.enabled != enable) {
+        	target.enabled = enable;
+		}
     }
 }

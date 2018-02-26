@@ -3,6 +3,7 @@
 [RequireComponent(typeof(Rigidbody2D))]
 public class Ball : MonoBehaviour
 {
+	public const string Tag = "Ball";
     [SerializeField]
     private float topY;
     [SerializeField]
@@ -14,6 +15,7 @@ public class Ball : MonoBehaviour
 
     private void Start ()
 	{
+		gameObject.tag = Tag;
 	    rb = GetComponent<Rigidbody2D>();
 	    startPosition = rb.position;
         target = FindObjectOfType<Target>();
